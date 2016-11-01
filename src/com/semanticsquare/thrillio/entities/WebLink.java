@@ -27,6 +27,12 @@ public class WebLink extends Bookmark {
 
 	@Override
 	public boolean isKidFriendlyEligible() {
+		
+		if(url.contains("porn") || getTitle().contains("porn")
+				|| host.contains("adult") ) {
+			return false;
+		}
+		
 		return true;
 	}
 

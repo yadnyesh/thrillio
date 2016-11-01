@@ -55,4 +55,10 @@ public class Book extends Bookmark {
 				+ Arrays.toString(authors) + ", genere=" + genere + ", amazonRating=" + amazonRating + "]";
 	}
 
+	@Override
+	public boolean isKidFriendlyEligible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 }
