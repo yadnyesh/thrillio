@@ -1,9 +1,11 @@
 package com.semanticsquare.thrillio.entities;
 
+import java.util.Arrays;
+
 public class Movie extends Bookmark {
 	private int releaseYear;
 	private String[] cast;
-	private String[] director;
+	private String[] directors;
 	private String genere;
 	private double imdbRating;
 
@@ -23,12 +25,12 @@ public class Movie extends Bookmark {
 		this.cast = cast;
 	}
 
-	public String[] getDirector() {
-		return director;
+	public String[] getDirectors() {
+		return directors;
 	}
 
-	public void setDirector(String[] director) {
-		this.director = director;
+	public void setDirectors(String[] directors) {
+		this.directors = directors;
 	}
 
 	public String getGenere() {
@@ -45,6 +47,12 @@ public class Movie extends Bookmark {
 
 	public void setImdbRating(double imdbRating) {
 		this.imdbRating = imdbRating;
+	}
+
+	@Override
+	public String toString() {
+		return "Movie [releaseYear=" + releaseYear + ", cast=" + Arrays.toString(cast) + ", directors="
+				+ Arrays.toString(directors) + ", genere=" + genere + ", imdbRating=" + imdbRating + "]";
 	}
 
 }
