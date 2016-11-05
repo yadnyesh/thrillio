@@ -10,10 +10,9 @@ import com.semanticsquare.thrillio.entities.WebLink;
 
 public class BookmarkManager {
 
-	
 	private static BookmarkManager instance = new BookmarkManager();
 	private static BookmarkDao dao = new BookmarkDao();
-	
+
 	private BookmarkManager() {
 
 	}
@@ -22,7 +21,8 @@ public class BookmarkManager {
 		return instance;
 	}
 
-	public Movie createMovie(long id, String title, String profileUrl, int releaseYear, String[] cast, String[] directors, String genere, double imdbRating) {
+	public Movie createMovie(long id, String title, String profileUrl, int releaseYear, String[] cast,
+			String[] directors, String genere, double imdbRating) {
 		Movie movie = new Movie();
 		movie.setId(id);
 		movie.setTitle(title);
@@ -36,12 +36,12 @@ public class BookmarkManager {
 		return movie;
 	}
 
-	public Book createBook(long id, String title, /* String profileUrl ,  */ int publicationYear, String publisher, String[] authors, String genere,
-			double amazonRating) {
+	public Book createBook(long id, String title, /* String profileUrl , */ int publicationYear, String publisher,
+			String[] authors, String genere, double amazonRating) {
 		Book book = new Book();
 		book.setId(id);
 		book.setTitle(title);
-		//book.setProfileUrl(profileUrl);
+		// book.setProfileUrl(profileUrl);
 		book.setPublicationYear(publicationYear);
 		book.setPublisher(publisher);
 		book.setAuthors(authors);
@@ -60,8 +60,8 @@ public class BookmarkManager {
 
 		return weblink;
 	}
-	
-	public Bookmark[][] getBookmarks(){
+
+	public Bookmark[][] getBookmarks() {
 		return dao.getBookmarks();
 	}
 
@@ -69,9 +69,27 @@ public class BookmarkManager {
 		UserBookmark userBookmark = new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
-		
+
 		dao.saveUserBookmark(userBookmark);
-		
+
+	}
+
+	public void setKidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+		bookmark.setKidFriendlyStatus(kidFriendlyStatus);
+		bookmark.setKidFriendlyMarkedBy(user);
+		System.out.println("Kid-Friendly Status: " + kidFriendlyStatus + " , " + bookmark + " , " + "Marked By: "
+				+ user.getEmail());
+
+	}
+
+	public void share(User user, Bookmark bookmark) {
+		bookmark.setSharedBy(user);
+		System.out.println("data to be shared: ");
+		if(bookmark instanceof Book){
+			System.out.println(((Book)bookmark).getItemData()); 
+		} else if(bookmark instanceof WebLink) {
+			System.out.println(((WebLink)bookmark).getItemData()); 
+		}		
 	}
 
 }
